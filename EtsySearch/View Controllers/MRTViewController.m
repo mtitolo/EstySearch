@@ -14,16 +14,18 @@
 
 @implementation MRTViewController
 
-- (void)viewDidLoad
+
+#pragma mark - UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    return 1;
 }
 
-- (void)didReceiveMemoryWarning
+- (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ListingCell" forIndexPath:indexPath];
+    
+    return cell;
 }
 
 @end

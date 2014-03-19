@@ -26,6 +26,7 @@
 		F60A49D518DA42ED00BDD0C2 /* ETSYSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F60A49D418DA42ED00BDD0C2 /* ETSYSearchController.m */; };
 		F60A49D818DA444900BDD0C2 /* ETSYPaginationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F60A49D718DA444900BDD0C2 /* ETSYPaginationInfo.m */; };
 		F60A49DB18DA445600BDD0C2 /* ETSYListing.m in Sources */ = {isa = PBXBuildFile; fileRef = F60A49DA18DA445600BDD0C2 /* ETSYListing.m */; };
+		F621D24718DA58C1005115AD /* NSArray+Listings.m in Sources */ = {isa = PBXBuildFile; fileRef = F621D24618DA58C1005115AD /* NSArray+Listings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		F60A49D718DA444900BDD0C2 /* ETSYPaginationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ETSYPaginationInfo.m; path = Models/ETSYPaginationInfo.m; sourceTree = "<group>"; };
 		F60A49D918DA445600BDD0C2 /* ETSYListing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ETSYListing.h; path = Models/ETSYListing.h; sourceTree = "<group>"; };
 		F60A49DA18DA445600BDD0C2 /* ETSYListing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ETSYListing.m; path = Models/ETSYListing.m; sourceTree = "<group>"; };
+		F621D24518DA58C1005115AD /* NSArray+Listings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+Listings.h"; path = "Utility/NSArray+Listings.h"; sourceTree = "<group>"; };
+		F621D24618DA58C1005115AD /* NSArray+Listings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Listings.m"; path = "Utility/NSArray+Listings.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +139,7 @@
 				F60A49AD18DA1C7600BDD0C2 /* MRTAppDelegate.h */,
 				F60A49AE18DA1C7600BDD0C2 /* MRTAppDelegate.m */,
 				F60A49DC18DA44A000BDD0C2 /* Models */,
+				F621D24818DA58C5005115AD /* Utility */,
 				F60A49DE18DA44EA00BDD0C2 /* Controllers */,
 				F60A49DD18DA44CD00BDD0C2 /* View Controllers */,
 				F60A49B618DA1C7600BDD0C2 /* Images.xcassets */,
@@ -201,6 +205,15 @@
 				F60A49D418DA42ED00BDD0C2 /* ETSYSearchController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F621D24818DA58C5005115AD /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				F621D24518DA58C1005115AD /* NSArray+Listings.h */,
+				F621D24618DA58C1005115AD /* NSArray+Listings.m */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,6 +386,7 @@
 				F60A49D818DA444900BDD0C2 /* ETSYPaginationInfo.m in Sources */,
 				F60A49B518DA1C7600BDD0C2 /* MRTViewController.m in Sources */,
 				F60A49AB18DA1C7600BDD0C2 /* main.m in Sources */,
+				F621D24718DA58C1005115AD /* NSArray+Listings.m in Sources */,
 				F60A49DB18DA445600BDD0C2 /* ETSYListing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

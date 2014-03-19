@@ -10,4 +10,13 @@
 
 @interface ETSYPaginationInfo : NSObject
 
+@property (nonatomic, assign) NSInteger currentPage;
+@property (nonatomic, assign) NSInteger currentOffset;
+@property (nonatomic, assign) NSInteger nextPage;
+@property (nonatomic, assign) NSInteger nextOffset;
+
+@property (nonatomic, assign) NSInteger pageSize;
+
+- (instancetype)initWithDictionary:(NSDictionary*)dictionary;
+
 @end

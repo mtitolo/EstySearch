@@ -10,4 +10,9 @@
 
 @interface ETSYListing : NSObject
 
+@property (nonatomic, copy) NSString* listingName;
+@property (nonatomic, copy) NSString* mainImage;
+
+- (instancetype)initWithDictionary:(NSDictionary*)dictionary;
+
 @end

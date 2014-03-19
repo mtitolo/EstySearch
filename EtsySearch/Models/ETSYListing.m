@@ -10,4 +10,16 @@
 
 @implementation ETSYListing
 
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary
+{
+    self = [self init];
+    
+    if (self) {
+        self.listingName = [dictionary objectForKey:@"title"];
+        self.mainImage = [[dictionary objectForKey:@"MainImage"] objectForKey:@"url_570xN"];
+    }
+    
+    return self;
+}
+
 @end
