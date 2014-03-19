@@ -34,6 +34,7 @@ describe(@"ETSYSearchController", ^{
         [searchController searchWithTerm:@"polka dot shirt" completion:^(NSArray *items, NSError *error) {
             if (!error) {
                 results = items;
+                [[theValue(searchController.pagination.currentPage) should] equal:theValue(1)];
             }
         }];
         
@@ -56,8 +57,15 @@ describe(@"ETSYSearchController", ^{
         });
         
         it(@"can load the next page", ^{
-            [searchController loadNextPageOfCurrentSearchWithCompletion:nil];
-            [[theValue(searchController.pagination.currentPage) shouldEventually] beGreaterThan:theValue(2)];
+            __block NSArray* results = nil;
+            [searchController loadNextPageOfCurrentSearchWithCompletion:^(NSArray *items, NSError *error) {
+                if (!error) {
+                    results = items;
+                    [[theValue(searchController.pagination.currentPage) should] beGreaterThan:theValue(2)];
+                }
+            }];
+            
+            [[results shouldEventually] beNonNil];
         });
         
         it(@"clears the search term", ^{
