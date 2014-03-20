@@ -12,7 +12,7 @@
 #import "NSArray+Listings.h"
 #import "NSString+Encoding.h"
 
-#define kAPIBaseString @"https://api.etsy.com/v2/listings/active?api_key=liwecjs0c3ssk6let4p1wqt9&includes=MainImage&"
+#define kAPIBaseString @"https://api.etsy.com/v2/listings/active?api_key=liwecjs0c3ssk6let4p1wqt9&includes=MainImage&limit=24&"
 
 @interface ETSYSearchController ()
 

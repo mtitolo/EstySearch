@@ -28,7 +28,6 @@ NS_ENUM(NSInteger, CollectionViewResultsState){
 
 @interface MRTViewController ()
 
-@property (nonatomic, assign, getter = isLoading) BOOL loading;
 @property (nonatomic, assign) NSInteger currentState;
 
 @property (nonatomic, strong) ETSYSearchController* searchController;
