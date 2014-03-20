@@ -16,7 +16,7 @@
     
     if (self) {
         self.currentPage = [[dictionary objectForKey:@"effective_page"] integerValue];
-        self.currentOffset = [[dictionary objectForKey:@"effective_offest"] integerValue];
+        self.currentOffset = [[dictionary objectForKey:@"effective_offset"] integerValue];
         
         if (![[dictionary objectForKey:@"next_page"] isEqual:[NSNull null]]) {
             self.nextPage = [[dictionary objectForKey:@"next_page"] integerValue];

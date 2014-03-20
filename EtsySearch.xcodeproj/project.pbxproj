@@ -30,6 +30,7 @@
 		F612F74A18DA8F4F0003D680 /* NoResultsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F612F74918DA8F4F0003D680 /* NoResultsView.xib */; };
 		F621256318DA6075009F1B6C /* MRTListingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F621256218DA6075009F1B6C /* MRTListingCell.m */; };
 		F621D24718DA58C1005115AD /* NSArray+Listings.m in Sources */ = {isa = PBXBuildFile; fileRef = F621D24618DA58C1005115AD /* NSArray+Listings.m */; };
+		F64F1B9618DB73A100E35C76 /* EtsyPaginationInfoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F64F1B9518DB73A100E35C76 /* EtsyPaginationInfoTests.m */; };
 		F6F8FF4518DB5201008FD1A1 /* NoMoreResultsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6F8FF4418DB5201008FD1A1 /* NoMoreResultsView.xib */; };
 		F6F8FF4918DB62E5008FD1A1 /* MRTShakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F8FF4818DB62E5008FD1A1 /* MRTShakeView.m */; };
 		F6F8FF4C18DB64B5008FD1A1 /* NSString+Encoding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F8FF4B18DB64B5008FD1A1 /* NSString+Encoding.m */; };
@@ -81,6 +82,7 @@
 		F621256218DA6075009F1B6C /* MRTListingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MRTListingCell.m; path = "View Controllers/MRTListingCell.m"; sourceTree = "<group>"; };
 		F621D24518DA58C1005115AD /* NSArray+Listings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+Listings.h"; path = "Utility/NSArray+Listings.h"; sourceTree = "<group>"; };
 		F621D24618DA58C1005115AD /* NSArray+Listings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Listings.m"; path = "Utility/NSArray+Listings.m"; sourceTree = "<group>"; };
+		F64F1B9518DB73A100E35C76 /* EtsyPaginationInfoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EtsyPaginationInfoTests.m; sourceTree = "<group>"; };
 		F6F8FF4418DB5201008FD1A1 /* NoMoreResultsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoMoreResultsView.xib; path = Views/NoMoreResultsView.xib; sourceTree = "<group>"; };
 		F6F8FF4718DB62E5008FD1A1 /* MRTShakeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MRTShakeView.h; path = Views/MRTShakeView.h; sourceTree = "<group>"; };
 		F6F8FF4818DB62E5008FD1A1 /* MRTShakeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MRTShakeView.m; path = Views/MRTShakeView.m; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				F60A49C918DA1C7700BDD0C2 /* EtsySearchTests.m */,
+				F64F1B9518DB73A100E35C76 /* EtsyPaginationInfoTests.m */,
 				F60A49C418DA1C7600BDD0C2 /* Supporting Files */,
 			);
 			path = EtsySearchTests;
@@ -433,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F64F1B9618DB73A100E35C76 /* EtsyPaginationInfoTests.m in Sources */,
 				F60A49CA18DA1C7700BDD0C2 /* EtsySearchTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
