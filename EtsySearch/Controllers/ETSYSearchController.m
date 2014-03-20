@@ -98,7 +98,7 @@
     NSString* baseString = [NSString stringWithFormat:@"%@keywords=%@", kAPIBaseString, [searchTerm percentEncodedString]];
     
     if (self.pagination) {
-        baseString = [baseString stringByAppendingString:[NSString stringWithFormat:@"&page=%d", self.pagination.nextPage]];
+        baseString = [baseString stringByAppendingString:[NSString stringWithFormat:@"&page=%ld", (long)self.pagination.nextPage]];
     }
     
     if (self.extraParams) {
