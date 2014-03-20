@@ -106,7 +106,7 @@ NS_ENUM(NSInteger, CollectionViewResultsState){
     CGSize footerSize = CGSizeZero;
     
     if (self.currentState != CollectionViewResultsNormal && section == ListingCollectionViewSectionAccessory) {
-        footerSize = CGSizeMake(310, 44);
+        footerSize = CGSizeMake(310, 50);
     }
     
     return footerSize;
@@ -116,7 +116,11 @@ NS_ENUM(NSInteger, CollectionViewResultsState){
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (scrollView.contentOffset.y > scrollView.contentSize.height - 600 && self.currentState == CollectionViewResultsNormal) {
+    if (![self.searchController canLoadNextPage] && !self.currentState != CollectionViewResultsAllShowing) {
+        self.currentState = CollectionViewResultsAllShowing;
+        [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:ListingCollectionViewSectionAccessory]];
+    }
+    else if (scrollView.contentOffset.y > scrollView.contentSize.height - 600 && self.currentState == CollectionViewResultsNormal) {
         self.currentState = CollectionViewResultsLoading;
         [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:ListingCollectionViewSectionAccessory]];
         [self.searchController loadNextPageOfCurrentSearchWithCompletion:^(NSArray *items, NSError *error) {

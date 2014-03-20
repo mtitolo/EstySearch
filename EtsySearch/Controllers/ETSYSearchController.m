@@ -57,6 +57,11 @@
     [task resume];
 }
 
+- (BOOL)canLoadNextPage
+{
+    return (self.pagination.currentPage < self.pagination.nextPage);
+}
+
 #pragma mark - Private
 
 - (NSURL*)searchURLForTerm:(NSString*)searchTerm

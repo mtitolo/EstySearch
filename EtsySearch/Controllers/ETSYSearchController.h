@@ -24,6 +24,13 @@
 - (void)searchWithTerm:(NSString*)searchTerm completion:(void(^)(NSArray* items, NSError* error))completion;
 
 /**
+ *  Checks whether or not we have reached the end of search results.
+ *
+ *  @return YES if more results can be loaded, NO if there are no more results.
+ */
+- (BOOL)canLoadNextPage;
+
+/**
  *  Uses the current search term and pagination information to load the next page
  *
  *  @param completion A completion block to be executed when the request completes
