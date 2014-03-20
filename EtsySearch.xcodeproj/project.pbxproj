@@ -26,6 +26,7 @@
 		F60A49D518DA42ED00BDD0C2 /* ETSYSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F60A49D418DA42ED00BDD0C2 /* ETSYSearchController.m */; };
 		F60A49D818DA444900BDD0C2 /* ETSYPaginationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F60A49D718DA444900BDD0C2 /* ETSYPaginationInfo.m */; };
 		F60A49DB18DA445600BDD0C2 /* ETSYListing.m in Sources */ = {isa = PBXBuildFile; fileRef = F60A49DA18DA445600BDD0C2 /* ETSYListing.m */; };
+		F621256318DA6075009F1B6C /* MRTListingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F621256218DA6075009F1B6C /* MRTListingCell.m */; };
 		F621D24718DA58C1005115AD /* NSArray+Listings.m in Sources */ = {isa = PBXBuildFile; fileRef = F621D24618DA58C1005115AD /* NSArray+Listings.m */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,8 @@
 		F60A49D718DA444900BDD0C2 /* ETSYPaginationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ETSYPaginationInfo.m; path = Models/ETSYPaginationInfo.m; sourceTree = "<group>"; };
 		F60A49D918DA445600BDD0C2 /* ETSYListing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ETSYListing.h; path = Models/ETSYListing.h; sourceTree = "<group>"; };
 		F60A49DA18DA445600BDD0C2 /* ETSYListing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ETSYListing.m; path = Models/ETSYListing.m; sourceTree = "<group>"; };
+		F621256118DA6075009F1B6C /* MRTListingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MRTListingCell.h; path = "View Controllers/MRTListingCell.h"; sourceTree = "<group>"; };
+		F621256218DA6075009F1B6C /* MRTListingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MRTListingCell.m; path = "View Controllers/MRTListingCell.m"; sourceTree = "<group>"; };
 		F621D24518DA58C1005115AD /* NSArray+Listings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+Listings.h"; path = "Utility/NSArray+Listings.h"; sourceTree = "<group>"; };
 		F621D24618DA58C1005115AD /* NSArray+Listings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Listings.m"; path = "Utility/NSArray+Listings.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -194,6 +197,8 @@
 				F60A49B018DA1C7600BDD0C2 /* Main.storyboard */,
 				F60A49B318DA1C7600BDD0C2 /* MRTViewController.h */,
 				F60A49B418DA1C7600BDD0C2 /* MRTViewController.m */,
+				F621256118DA6075009F1B6C /* MRTListingCell.h */,
+				F621256218DA6075009F1B6C /* MRTListingCell.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -381,6 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F621256318DA6075009F1B6C /* MRTListingCell.m in Sources */,
 				F60A49D518DA42ED00BDD0C2 /* ETSYSearchController.m in Sources */,
 				F60A49AF18DA1C7600BDD0C2 /* MRTAppDelegate.m in Sources */,
 				F60A49D818DA444900BDD0C2 /* ETSYPaginationInfo.m in Sources */,
