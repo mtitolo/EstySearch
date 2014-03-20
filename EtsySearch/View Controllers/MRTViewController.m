@@ -10,6 +10,7 @@
 #import "ETSYSearchController.h"
 #import "ETSYListing.h"
 #import "MRTListingCell.h"
+#import "MRTShakeView.h"
 
 NS_ENUM(NSInteger, ListingCollectionViewSectionType){
     ListingCollectionViewSectionItems = 0,
@@ -42,7 +43,7 @@ NS_ENUM(NSInteger, CollectionViewResultsState){
     [super viewDidLoad];
     
     self.searchController = [[ETSYSearchController alloc] init];
-    
+        
     [self.collectionView registerNib:[UINib nibWithNibName:@"NoResultsView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"NoResultsView"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"EmptyView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"EmptyView"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"NoMoreResultsView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"NoMoreResultsView"];

@@ -10,6 +10,7 @@
 #import "ETSYPaginationInfo.h"
 #import "ETSYListing.h"
 #import "NSArray+Listings.h"
+#import "NSString+Encoding.h"
 
 #define kAPIBaseString @"https://api.etsy.com/v2/listings/active?api_key=liwecjs0c3ssk6let4p1wqt9&includes=MainImage&"
 
@@ -18,9 +19,28 @@
 @property (nonatomic, copy) NSString* searchTerm;
 @property (nonatomic, strong) ETSYPaginationInfo* pagination;
 
+@property (nonatomic, copy) NSString* extraParams;
+
 @end
 
 @implementation ETSYSearchController
+
+#pragma mark - NSObject
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleCatMode) name:@"DeviceShake" object:nil];
+    }
+    
+    return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DeviceShake" object:nil];
+}
 
 - (void)clearSearch
 {
@@ -74,17 +94,15 @@
 
 - (NSURL*)searchURLForTerm:(NSString*)searchTerm
 {
-    NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
-                                                                                  NULL,
-                                                                                  (CFStringRef)searchTerm,
-                                                                                  NULL,
-                                                                                  (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                                                  kCFStringEncodingUTF8 ));
     
-    NSString* baseString = [NSString stringWithFormat:@"%@keywords=%@", kAPIBaseString, encodedString];
+    NSString* baseString = [NSString stringWithFormat:@"%@keywords=%@", kAPIBaseString, [searchTerm percentEncodedString]];
     
     if (self.pagination) {
         baseString = [baseString stringByAppendingString:[NSString stringWithFormat:@"&page=%d", self.pagination.nextPage]];
+    }
+    
+    if (self.extraParams) {
+        baseString = [baseString stringByAppendingString:self.extraParams];
     }
     
     return [NSURL URLWithString:baseString];
@@ -110,6 +128,16 @@
     }
     else {
         completion(nil, error);
+    }
+}
+
+- (void)toggleCatMode
+{
+    if (self.extraParams) {
+        self.extraParams = nil;
+    }
+    else {
+        self.extraParams = @"&tags=cats,kittens,kitty";
     }
 }
 
