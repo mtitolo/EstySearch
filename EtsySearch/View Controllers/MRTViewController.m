@@ -120,27 +120,37 @@ NS_ENUM(NSInteger, CollectionViewResultsState){
 
 #pragma mark - UIScrollViewDelegate
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    if ([self.searchBar isFirstResponder]) {
+        [self.searchBar resignFirstResponder];
+    }
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (![self.searchController canLoadNextPage] && !self.currentState != CollectionViewResultsAllShowing) {
-        self.currentState = CollectionViewResultsAllShowing;
-        [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:ListingCollectionViewSectionAccessory]];
-    }
-    else if (scrollView.contentOffset.y > scrollView.contentSize.height - 600 && self.currentState == CollectionViewResultsNormal) {
-        self.currentState = CollectionViewResultsLoading;
-        [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:ListingCollectionViewSectionAccessory]];
-        [self.searchController loadNextPageOfCurrentSearchWithCompletion:^(NSArray *items, NSError *error) {
-            
-            if (!error) {
-                if (items) {
-                    self.currentState = CollectionViewResultsNormal;
-                    self.listings = [self.listings arrayByAddingObjectsFromArray:items];
+    if (scrollView.contentOffset.y > scrollView.contentSize.height - 600 && self.currentState == CollectionViewResultsNormal) {
+        
+        if (![self.searchController canLoadNextPage] && self.currentState != CollectionViewResultsAllShowing) {
+            self.currentState = CollectionViewResultsAllShowing;
+            [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:ListingCollectionViewSectionAccessory]];
+        }
+        else {
+            self.currentState = CollectionViewResultsLoading;
+            [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:ListingCollectionViewSectionAccessory]];
+            [self.searchController loadNextPageOfCurrentSearchWithCompletion:^(NSArray *items, NSError *error) {
+                
+                if (!error) {
+                    if (items) {
+                        self.currentState = CollectionViewResultsNormal;
+                        self.listings = [self.listings arrayByAddingObjectsFromArray:items];
+                    }
+                    
+                    [self.collectionView reloadData];
                 }
                 
-                [self.collectionView reloadData];
-            }
-            
-        }];
+            }];
+        }
     }
 }
 
