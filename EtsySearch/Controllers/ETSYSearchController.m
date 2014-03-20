@@ -66,7 +66,6 @@
         completion(nil, error);
     }
     
-    
 }
 
 - (void)makeSearchRequestWithCompletion:(void (^)(NSArray *, NSError *))completion
@@ -78,7 +77,10 @@
             [self processResponse:data withCompletion:completion];
         }
         else {
-            completion(nil, error);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(nil, error);
+            });
         }
     }];
     
@@ -124,10 +126,16 @@
     if (responseDict) {
         self.pagination = [[ETSYPaginationInfo alloc] initWithDictionary:[responseDict objectForKey:@"pagination"]];
         NSArray* listings = [[responseDict objectForKey:@"results"] arrayOfListingsFromJSON];
-        completion(listings, nil);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(listings, nil);
+        });
+        
     }
     else {
-        completion(nil, error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(nil, error);
+        });
     }
 }
 
