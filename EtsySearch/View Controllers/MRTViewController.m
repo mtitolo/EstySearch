@@ -43,6 +43,7 @@ NS_ENUM(NSInteger, CollectionViewResultsState){
     [super viewDidLoad];
     
     self.searchController = [[ETSYSearchController alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceShake) name:@"DeviceShake" object:nil];
         
     [self.collectionView registerNib:[UINib nibWithNibName:@"NoResultsView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"NoResultsView"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"EmptyView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"EmptyView"];
@@ -50,6 +51,11 @@ NS_ENUM(NSInteger, CollectionViewResultsState){
     
     self.currentState = CollectionViewResultsNoSearch;
     [self.collectionView reloadData];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DeviceShake" object:nil];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -157,6 +163,20 @@ NS_ENUM(NSInteger, CollectionViewResultsState){
         }
         
     }];
+}
+
+#pragma mark - Shake
+
+- (void)deviceShake
+{
+    UIImage* icon = [self.searchBar imageForSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    
+    if (icon) {
+        [self.searchBar setImage:nil forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    }
+    else {
+        [self.searchBar setImage:[UIImage imageNamed:@"paw"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    }
 }
 
 @end
