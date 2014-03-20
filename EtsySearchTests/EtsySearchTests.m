@@ -75,6 +75,36 @@ describe(@"ETSYSearchController", ^{
             [[searchController.searchTerm should] beNil];
         });
     });
+    
+    context(@"a search has loaded all the results", ^{
+        let(pagination, ^id{
+            ETSYPaginationInfo* info = [[ETSYPaginationInfo alloc] initWithDictionary:@{@"effective_limit": @25,
+                                                                                        @"effective_offset": @25,
+                                                                                        @"next_offset": [NSNull null],
+                                                                                        @"effective_page": @2,
+                                                                                        @"next_page": [NSNull null]}];
+            return info;
+        });
+        
+        beforeEach(^{
+            searchController.pagination = pagination;
+            searchController.searchTerm = @"polka dot shirt";
+        });
+        
+        it(@"should return NO for canLoadNextPage", ^{
+            [[theValue([searchController canLoadNextPage]) should] beFalse];
+        });
+        
+        it(@"should throw an error if we try to load more", ^{
+            __block NSError* loadError = nil;
+            
+            [searchController loadNextPageOfCurrentSearchWithCompletion:^(NSArray *items, NSError *error) {
+                loadError = error;
+            }];
+            
+            [[loadError shouldEventually] beNonNil];
+        });
+    });
 });
 
 SPEC_END

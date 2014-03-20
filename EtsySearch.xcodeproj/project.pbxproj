@@ -201,13 +201,9 @@
 			isa = PBXGroup;
 			children = (
 				F60A49B018DA1C7600BDD0C2 /* Main.storyboard */,
-				F612F74918DA8F4F0003D680 /* NoResultsView.xib */,
-				F612F74718DA8F1C0003D680 /* EmptyView.xib */,
-				F6F8FF4418DB5201008FD1A1 /* NoMoreResultsView.xib */,
 				F60A49B318DA1C7600BDD0C2 /* MRTViewController.h */,
 				F60A49B418DA1C7600BDD0C2 /* MRTViewController.m */,
-				F621256118DA6075009F1B6C /* MRTListingCell.h */,
-				F621256218DA6075009F1B6C /* MRTListingCell.m */,
+				F6F8FF4618DB5E5A008FD1A1 /* Views */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -228,6 +224,18 @@
 				F621D24618DA58C1005115AD /* NSArray+Listings.m */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		F6F8FF4618DB5E5A008FD1A1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F621256118DA6075009F1B6C /* MRTListingCell.h */,
+				F621256218DA6075009F1B6C /* MRTListingCell.m */,
+				F612F74918DA8F4F0003D680 /* NoResultsView.xib */,
+				F612F74718DA8F1C0003D680 /* EmptyView.xib */,
+				F6F8FF4418DB5201008FD1A1 /* NoMoreResultsView.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

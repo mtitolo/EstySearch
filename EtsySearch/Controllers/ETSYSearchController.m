@@ -38,7 +38,15 @@
 
 - (void)loadNextPageOfCurrentSearchWithCompletion:(void (^)(NSArray *, NSError *))completion
 {
-    [self makeSearchRequestWithCompletion:completion];
+    if ([self canLoadNextPage]) {
+        [self makeSearchRequestWithCompletion:completion];
+    }
+    else {
+        NSError* error = [NSError errorWithDomain:@"EtsySearchDomain" code:0 userInfo:@{NSLocalizedDescriptionKey: @"There are no more results to load"}];
+        completion(nil, error);
+    }
+    
+    
 }
 
 - (void)makeSearchRequestWithCompletion:(void (^)(NSArray *, NSError *))completion
