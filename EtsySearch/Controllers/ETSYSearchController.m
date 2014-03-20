@@ -68,7 +68,7 @@
                                                                                   (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                   kCFStringEncodingUTF8 ));
     
-    NSString* baseString = [NSString stringWithFormat:@"%@%@", kAPIBaseString, encodedString];
+    NSString* baseString = [NSString stringWithFormat:@"%@keywords=%@", kAPIBaseString, encodedString];
     
     if (self.pagination) {
         baseString = [baseString stringByAppendingString:[NSString stringWithFormat:@"&page=%d", self.pagination.nextPage]];

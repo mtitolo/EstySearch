@@ -17,9 +17,18 @@ NS_ENUM(NSInteger, ListingCollectionViewSectionType){
     ListingCollectionViewSectionCount
 };
 
+NS_ENUM(NSInteger, CollectionViewResultsState){
+    CollectionViewResultsNoSearch,
+    CollectionViewResultsLoading,
+    CollectionViewResultsNormal,
+    CollectionViewResultsNone,
+    CollectionViewResultsAllShowing
+};
+
 @interface MRTViewController ()
 
 @property (nonatomic, assign, getter = isLoading) BOOL loading;
+@property (nonatomic, assign) NSInteger currentState;
 
 @property (nonatomic, strong) ETSYSearchController* searchController;
 @property (nonatomic, strong) NSArray* listings;
@@ -33,6 +42,13 @@ NS_ENUM(NSInteger, ListingCollectionViewSectionType){
     [super viewDidLoad];
     
     self.searchController = [[ETSYSearchController alloc] init];
+    
+    [self.collectionView registerNib:[UINib nibWithNibName:@"NoResultsView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"NoResultsView"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"EmptyView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"EmptyView"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"NoMoreResultsView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"NoMoreResultsView"];
+    
+    self.currentState = CollectionViewResultsNoSearch;
+    [self.collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -61,7 +77,26 @@ NS_ENUM(NSInteger, ListingCollectionViewSectionType){
 
 - (UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    return [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"LoadingView" forIndexPath:indexPath];
+    UICollectionReusableView* view = nil;
+    
+    switch (self.currentState) {
+        case CollectionViewResultsNoSearch:
+            view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"EmptyView" forIndexPath:indexPath];
+            break;
+        case CollectionViewResultsLoading:
+            view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"LoadingView" forIndexPath:indexPath];
+            break;
+        case CollectionViewResultsNone:
+            view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"NoResultsView" forIndexPath:indexPath];
+            break;
+        case CollectionViewResultsAllShowing:
+            view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"NoMoreResultsView" forIndexPath:indexPath];
+            break;
+        default:
+            break;
+    }
+    
+    return view;
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -70,7 +105,7 @@ NS_ENUM(NSInteger, ListingCollectionViewSectionType){
 {
     CGSize footerSize = CGSizeZero;
     
-    if (self.isLoading && section == ListingCollectionViewSectionAccessory) {
+    if (self.currentState != CollectionViewResultsNormal && section == ListingCollectionViewSectionAccessory) {
         footerSize = CGSizeMake(310, 44);
     }
     
@@ -81,13 +116,20 @@ NS_ENUM(NSInteger, ListingCollectionViewSectionType){
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (scrollView.contentOffset.y > scrollView.contentSize.height - 600 && !self.isLoading) {
-        self.loading = YES;
+    if (scrollView.contentOffset.y > scrollView.contentSize.height - 600 && self.currentState == CollectionViewResultsNormal) {
+        self.currentState = CollectionViewResultsLoading;
         [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:ListingCollectionViewSectionAccessory]];
         [self.searchController loadNextPageOfCurrentSearchWithCompletion:^(NSArray *items, NSError *error) {
-            self.loading = NO;
-            self.listings = [self.listings arrayByAddingObjectsFromArray:items];
-            [self.collectionView reloadData];
+            
+            if (!error) {
+                if (items) {
+                    self.currentState = CollectionViewResultsNormal;
+                    self.listings = [self.listings arrayByAddingObjectsFromArray:items];
+                }
+                
+                [self.collectionView reloadData];
+            }
+            
         }];
     }
 }
@@ -97,13 +139,18 @@ NS_ENUM(NSInteger, ListingCollectionViewSectionType){
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
+    
+    self.currentState = CollectionViewResultsLoading;
+    self.listings = nil;
+    [self.collectionView reloadData];
 
-    self.loading = YES;
-    [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:ListingCollectionViewSectionAccessory]];
     [self.searchController searchWithTerm:searchBar.text completion:^(NSArray *items, NSError *error) {
-        self.loading = NO;
-        self.listings = items;
-        [self.collectionView reloadData];
+        if (!error) {
+            self.currentState = CollectionViewResultsNormal;
+            self.listings = items;
+            [self.collectionView reloadData];
+        }
+        
     }];
 }
 

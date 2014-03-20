@@ -18,8 +18,14 @@
         self.currentPage = [[dictionary objectForKey:@"effective_page"] integerValue];
         self.currentOffset = [[dictionary objectForKey:@"effective_offest"] integerValue];
         
-        self.nextPage = [[dictionary objectForKey:@"next_page"] integerValue];
-        self.nextOffset = [[dictionary objectForKey:@"next_offset"] integerValue];
+        if (![[dictionary objectForKey:@"next_page"] isEqual:[NSNull null]]) {
+            self.nextPage = [[dictionary objectForKey:@"next_page"] integerValue];
+        }
+        
+        if (![[dictionary objectForKey:@"next_offset"] isEqual:[NSNull null]]) {
+            self.nextOffset = [[dictionary objectForKey:@"next_offset"] integerValue];
+        }
+        
         
         self.pageSize = [[dictionary objectForKey:@"effective_limit"] integerValue];
     }
